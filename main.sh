@@ -90,7 +90,7 @@ Usage: ${__cmd} <command> [options ...]
     -h | --help <volname>             show this message
 EOF
 
-fn_image() {
+function fn_image() {
   local cmd
 
   while [[ $# > 0 ]]; do
@@ -136,7 +136,7 @@ Usage: ${__cmd} create <image>
     -q | --quiet                      silent all messages
 EOF
 
-fn_image_create() {
+function fn_image_create() {
   local image=$1; shift
   local args=$@
   local defaults=(
@@ -236,7 +236,7 @@ Usage: ${__cmd} mount  <image>
     -q | --quiet
 EOF
 
-fn_image_mount() {
+function fn_image_mount() {
     local image_name=$1
     local mount_point=$2
 
@@ -258,7 +258,7 @@ Usage: ${__cmd} umount <devname>/<path/volname>
     -q | --quiet
 EOF
 
-fn_image_unount() {
+function fn_image_unount() {
     local mount_point=$1
 
 	if [ -d "${mount_point}" ]; then 
@@ -269,10 +269,11 @@ fn_image_unount() {
     fi
 }
 
-fn_image_usage() {
+function fn_image_usage() {
   echo "" 1>&2
   echo "${1}" 1>&2
   echo "" 1>&2
   exit 1   
 }
+
 [[ "${__shell}" = /bin/bash* ]] && fn_image $@
